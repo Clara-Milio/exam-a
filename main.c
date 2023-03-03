@@ -68,17 +68,87 @@ int main(){
     printf("\n");  
     }
     printf("---------------------------------");  
-    printf("\n");  
-    //toucher le code entre les commentaires 
-    
-    printf("%d",rand() % 2);
-    
-  
+    printf("\n");
+
+    //toucher le code entre les commentaires
+
+    //fonction générer
+    int generer(int grille[9][9]) {
+        printf("Hello ! Welcome in this game !");  
+        printf("\n");  
+        printf("---------------------------------");  
+        printf("\n");  
+        int nonNuls = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                grille[i][j] = rand() % 9 + 1;
+                if (grille[i][j] != 0) {
+                    nonNuls++;
+                }
+            }
+            printf("---------------------------------");  
+            printf("\n");
+        }
+        system("pause");
+        return 0;
+    }
+
+    //fontion saisir
+    int saisir(int grille[9][9], int* rempli) {
+        int i, j, v;
+        do {
+            printf("Entrez 2 nombres entre 1 et 9 (qui serviront à trouver la case voulue) et une valeur entre 1 et 9 à nouveau :\n");
+            scanf("%d %d %d", &i, &j, &v);
+            i--;
+            j--;
+        } while (i < 0 || i >= 9 || j < 0 || j >= 9 || v < 1 || v > 9);
+        if (grille[i][j] == 0) {
+            grille[i][j] = v;
+            (*rempli)++;
+        }
+    }
 
 
+    //fonction verifier ligne colonne
+    int verifierLigneColonne(int grille[N][N], int orientation, int nombre) {
+        int bonneGrille[9] = {0};
+        for (int i = 0; i < N; i++) {
+            int x = sens == 0 ? i : nombre;
+            int y = sens == 0 ? nombre : i;
+            int z = grille[x][y];
+            if (z == 0) {
+                return 0;
 
+            }
+            if (bonneGrille[z-1] == 1) {
+                return 0;
+            }
+            bonneGrille[z-1] = 1;
+        }
+        return 1;
+    }
+
+    //fonction verifier region, je ne sais absolument pas comment faire ca :'( ALED
+    int verifierRegion(int grille[9][9]){
+
+    }
+
+    //fonction verifier grille
+    int verifierGrille(int grille[9][9]) {
+    for (int i = 0; i < N; i++) {
+        if (verifierLigneColonne(bonneGrille = 1)) {
+            printf("Grille juste !")
+            return 0;
+        }
+        if (verifierLigneColonne(bonneGrille = 0)) {
+            printf("Grille fausse !")
+            return 0;
+        }
+    }
     //Ne pas toucher au code ci dessous
     system("pause");
     return 0;
 }
+
+// étant très mauvaise en programmation ce sont malheureusement les seules choses que je puisse sortir, l'exercice étant bien trop difficile pour mes compétences actuelles...
 
